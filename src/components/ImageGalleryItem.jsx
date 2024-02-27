@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.css'; // Importar estilos según sea necesario
+import './ImageGalleryItem.css';
 
-const ImageGalleryItem = ({ image, onClick }) => {
-  const handleClick = () => {
-    onClick(image.largeImageURL);
+class ImageGalleryItem extends React.Component {
+  handleClick = () => {
+    this.props.onClick(this.props.image.largeImageURL);
   };
 
-  return (
-    <li className="ImageGalleryItem">
-      <img src={image.webformatURL} alt="" className="ImageGalleryItem-image" onClick={handleClick} />
-    </li>
-  );
-};
+  render() {
+    const { image } = this.props;
+    return (
+      <li className="gallery-item" onClick={this.handleClick}>
+        <img src={image.webformatURL} alt="" />
+      </li>
+    );
+  }
+}
 
 ImageGalleryItem.propTypes = {
   image: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default ImageGalleryItem; 
+export default ImageGalleryItem;
+

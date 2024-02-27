@@ -1,8 +1,12 @@
 import React from 'react';
-import './styles.css'; // Importar estilos según sea necesario
+import './Loader.css';
 
 const Loader = () => {
-  return <div className="Loader" />;
+  return (
+    <div className="loader">
+      <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+  );
 };
 
-export default Loader; 
+export default Loader;

@@ -1,16 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.css'; // Importar estilos según sea necesario
+import './Modal.css';
 
-const Modal = ({ largeImageURL, onClose }) => {
-  return (
-    <div className="Overlay" onClick={onClose}>
-      <div className="Modal">
-        <img src={largeImageURL} alt="" />
+class Modal extends React.Component {
+  handleClose = () => {
+    this.props.onClose();
+  };
+
+  render() {
+    const { largeImageURL } = this.props;
+    return (
+      <div className="overlay" onClick={this.handleClose}>
+        <div className="modal">
+          <img src={largeImageURL} alt="" />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 Modal.propTypes = {
   largeImageURL: PropTypes.string.isRequired,
@@ -18,3 +25,5 @@ Modal.propTypes = {
 };
 
 export default Modal;
+
+
