@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './ImageGallery.css'; // Importa los estilos según sea necesario
+import PropTypes from 'prop-types'; 
 
 class ImageGallery extends Component {
   render() {

@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import './ImageGalleryItem.css';
+import PropTypes from 'prop-types'; 
 
 class ImageGalleryItem extends React.Component {
   handleClick = () => {
