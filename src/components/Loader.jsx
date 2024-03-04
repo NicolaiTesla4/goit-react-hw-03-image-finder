@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Bars from 'react-loader-spinner'; 
+import { Bars } from 'react-loader-spinner';
 
 class Loader extends Component {
   render() {

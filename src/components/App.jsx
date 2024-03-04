@@ -17,12 +17,13 @@
 
 
 import { Component } from 'react';
-import { Searchbar } from './Searchbar';
-import { ImageGallery } from './ImageGallery';
-import { Button } from './Button';
-import { fetchImages } from './api/fetchImages';
-import { Loader } from './Loader';
-import { Modal } from './Modal';
+import  Searchbar  from './Searchbar.jsx';
+import  ImageGallery  from './ImageGallery.jsx';
+import  Button  from './Button.jsx';
+import { fetchImages } from './API/fetchimages.js';   
+import  Loader  from './Loader';
+import Modal from './Modal';
+
 let page = 1;
 let search = '';
 
@@ -112,4 +113,4 @@ class App extends Component {
   }
 }
 
-export { App };
+export { App }; 
