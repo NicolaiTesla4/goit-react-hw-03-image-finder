@@ -1,22 +1,5 @@
-/* export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-}; */
-
-
-import { Component } from 'react';
+ 
+/* import { Component } from 'react';
 import  Searchbar  from './Searchbar.jsx';
 import  ImageGallery  from './ImageGallery.jsx';
 import  Button  from './Button.jsx';
@@ -113,4 +96,78 @@ class App extends Component {
   }
 }
 
-export { App }; 
+export { App };  */
+
+
+ 
+import React, { Component } from 'react';
+import Searchbar from './Searchbar.jsx';
+import ImageGallery from './ImageGallery.jsx';
+import Button from './Button.jsx';
+import Modal from './Modal.jsx';
+import Loader from './Loader.jsx';
+import { fetchImages} from './API/fetchimages.js';
+
+class App extends Component {
+  state = {
+    images: [],
+    query: '',
+    page: 1,
+    isLoading: false,
+    showModal: false,
+    largeImageURL: '',
+  };
+
+  handleSubmit = async (query) => {
+    await this.setState({ query, page: 1, images: [] });
+    this.fetchImages();
+  };
+
+  handleLoadMore = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }), this.fetchImages);
+  };
+
+  handleOpenModal = (largeImageURL) => {
+    this.setState({ showModal: true, largeImageURL });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
+  };
+
+  fetchImages = async () => {
+    const { query, page } = this.state;
+    this.setState({ isLoading: true });
+    try {
+      const response = await fetchImages(query, page);
+      this.setState(prevState => ({
+        images: [...prevState.images, ...response.data.hits],
+      }));
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    } finally {
+      this.setState({ isLoading: false });
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  render() {
+    const { images, isLoading, showModal, largeImageURL } = this.state;
+
+    return (
+      <div className="App">
+        <Searchbar onSubmit={this.handleSubmit} />
+        {isLoading && <Loader />}
+        <ImageGallery images={images} onImageClick={this.handleOpenModal} /> 
+
+        {images.length > 0 && !isLoading && <Button onClick={this.handleLoadMore} />}
+        {showModal && <Modal largeImageURL={largeImageURL} onClose={this.handleCloseModal} />}
+      </div>
+    );
+  }
+}
+
+export default App; 
