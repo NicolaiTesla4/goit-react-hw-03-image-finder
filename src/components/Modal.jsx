@@ -9,8 +9,8 @@ class Modal extends React.Component {
   render() {
     const { largeImageURL } = this.props;
     return (
-      <div className="overlay" onClick={this.handleClose}>
-        <div className="modal">
+      <div className='overlay' onClick={this.handleClose}>
+        <div className='modal'>
           <img src={largeImageURL} alt="" />
         </div>
       </div>

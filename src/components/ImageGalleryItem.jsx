@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 
 class ImageGalleryItem extends React.Component {
   handleClick = () => {
@@ -9,8 +9,13 @@ class ImageGalleryItem extends React.Component {
   render() {
     const { image } = this.props;
     return (
-      <li className="gallery-item" onClick={this.handleClick}>
-        <img src={image.webformatURL} alt="" />
+      <li className='imageGalleryItem' onClick={this.handleClick}>
+        <img
+          src={image.webformatURL} 
+          alt={image.tags} 
+          className="imageGalleryItem-image"
+          data-largeurl={image.largeImageURL} 
+        />
       </li>
     );
   }
@@ -21,4 +26,4 @@ ImageGalleryItem.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default ImageGalleryItem;  
+export default ImageGalleryItem; 
